@@ -1,0 +1,495 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "Academia - Microsserviços",
+  "collectionId": "academia-col-0001",
+  "dateExported": "2026-11-20T12:00:00.000Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "fld-0",
+      "name": "Alunos",
+      "containerId": "",
+      "created": "2026-11-20T12:00:00.000Z",
+      "sortNum": 10000
+    },
+    {
+      "_id": "fld-1",
+      "name": "Planos",
+      "containerId": "",
+      "created": "2026-11-20T12:00:00.000Z",
+      "sortNum": 20000
+    },
+    {
+      "_id": "fld-2",
+      "name": "Instrutores",
+      "containerId": "",
+      "created": "2026-11-20T12:00:00.000Z",
+      "sortNum": 30000
+    },
+    {
+      "_id": "fld-3",
+      "name": "Pagamentos",
+      "containerId": "",
+      "created": "2026-11-20T12:00:00.000Z",
+      "sortNum": 40000
+    },
+    {
+      "_id": "fld-4",
+      "name": "Integrações",
+      "containerId": "",
+      "created": "2026-11-20T12:00:00.000Z",
+      "sortNum": 50000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "req-000",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Listar alunos",
+      "url": "http://127.0.0.1:5001/alunos",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-001",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Buscar aluno 2",
+      "url": "http://127.0.0.1:5001/alunos/2",
+      "method": "GET",
+      "sortNum": 20000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-002",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Criar aluno",
+      "url": "http://127.0.0.1:5001/alunos",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Diego Martins\",\n  \"email\": \"diego@email.com\",\n  \"plano_id\": 2,\n  \"instrutor_id\": 1\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-003",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Atualizar aluno 4",
+      "url": "http://127.0.0.1:5001/alunos/4",
+      "method": "PUT",
+      "sortNum": 40000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Diego Martins\",\n  \"email\": \"diego.m@email.com\",\n  \"plano_id\": 3,\n  \"instrutor_id\": 2,\n  \"ativo\": true\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-004",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Voltar aluno 1 para pendente",
+      "url": "http://127.0.0.1:5001/alunos/1/situacao",
+      "method": "PATCH",
+      "sortNum": 50000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"situacao_pagamento\": \"pendente\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-005",
+      "colId": "academia-col-0001",
+      "containerId": "fld-0",
+      "name": "Remover aluno 4",
+      "url": "http://127.0.0.1:5001/alunos/4",
+      "method": "DELETE",
+      "sortNum": 60000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-006",
+      "colId": "academia-col-0001",
+      "containerId": "fld-1",
+      "name": "Listar planos",
+      "url": "http://127.0.0.1:5002/planos",
+      "method": "GET",
+      "sortNum": 70000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-007",
+      "colId": "academia-col-0001",
+      "containerId": "fld-1",
+      "name": "Buscar plano 1",
+      "url": "http://127.0.0.1:5002/planos/1",
+      "method": "GET",
+      "sortNum": 80000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-008",
+      "colId": "academia-col-0001",
+      "containerId": "fld-1",
+      "name": "Criar plano",
+      "url": "http://127.0.0.1:5002/planos",
+      "method": "POST",
+      "sortNum": 90000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Semestral\",\n  \"valor\": 499.9,\n  \"duracao_meses\": 6\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-009",
+      "colId": "academia-col-0001",
+      "containerId": "fld-1",
+      "name": "Atualizar plano 4",
+      "url": "http://127.0.0.1:5002/planos/4",
+      "method": "PUT",
+      "sortNum": 100000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Semestral\",\n  \"valor\": 479.9,\n  \"duracao_meses\": 6\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-010",
+      "colId": "academia-col-0001",
+      "containerId": "fld-1",
+      "name": "Remover plano 4",
+      "url": "http://127.0.0.1:5002/planos/4",
+      "method": "DELETE",
+      "sortNum": 110000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-011",
+      "colId": "academia-col-0001",
+      "containerId": "fld-2",
+      "name": "Listar instrutores",
+      "url": "http://127.0.0.1:5003/instrutores",
+      "method": "GET",
+      "sortNum": 120000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-012",
+      "colId": "academia-col-0001",
+      "containerId": "fld-2",
+      "name": "Buscar instrutor 1",
+      "url": "http://127.0.0.1:5003/instrutores/1",
+      "method": "GET",
+      "sortNum": 130000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-013",
+      "colId": "academia-col-0001",
+      "containerId": "fld-2",
+      "name": "Criar instrutor",
+      "url": "http://127.0.0.1:5003/instrutores",
+      "method": "POST",
+      "sortNum": 140000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Rafael Alves\",\n  \"especialidade\": \"Crossfit\",\n  \"cref\": \"054321-G/SC\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-014",
+      "colId": "academia-col-0001",
+      "containerId": "fld-2",
+      "name": "Atualizar instrutor 3",
+      "url": "http://127.0.0.1:5003/instrutores/3",
+      "method": "PUT",
+      "sortNum": 150000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Rafael Alves\",\n  \"especialidade\": \"Pilates\",\n  \"cref\": \"054321-G/SC\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-015",
+      "colId": "academia-col-0001",
+      "containerId": "fld-2",
+      "name": "Remover instrutor 3",
+      "url": "http://127.0.0.1:5003/instrutores/3",
+      "method": "DELETE",
+      "sortNum": 160000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-016",
+      "colId": "academia-col-0001",
+      "containerId": "fld-3",
+      "name": "Listar pagamentos",
+      "url": "http://127.0.0.1:5004/pagamentos",
+      "method": "GET",
+      "sortNum": 170000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-017",
+      "colId": "academia-col-0001",
+      "containerId": "fld-3",
+      "name": "Listar pagamentos do aluno 1",
+      "url": "http://127.0.0.1:5004/pagamentos?aluno_id=1",
+      "method": "GET",
+      "sortNum": 180000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-018",
+      "colId": "academia-col-0001",
+      "containerId": "fld-3",
+      "name": "Buscar pagamento 1",
+      "url": "http://127.0.0.1:5004/pagamentos/1",
+      "method": "GET",
+      "sortNum": 190000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-019",
+      "colId": "academia-col-0001",
+      "containerId": "fld-3",
+      "name": "Remover pagamento 1",
+      "url": "http://127.0.0.1:5004/pagamentos/1",
+      "method": "DELETE",
+      "sortNum": 200000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-020",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Busca 1 - Consultar aluno 1 (mostra o plano)",
+      "url": "http://127.0.0.1:5001/alunos/1",
+      "method": "GET",
+      "sortNum": 210000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-021",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Busca 1 (extra) - Criar aluno com plano inexistente (422)",
+      "url": "http://127.0.0.1:5001/alunos",
+      "method": "POST",
+      "sortNum": 220000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nome\": \"Teste\",\n  \"email\": \"teste@email.com\",\n  \"plano_id\": 99\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-022",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Busca 2 - Pagamento de aluno inativo (422)",
+      "url": "http://127.0.0.1:5004/pagamentos",
+      "method": "POST",
+      "sortNum": 230000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"aluno_id\": 3,\n  \"valor\": 269.9,\n  \"referencia\": \"2026-11\",\n  \"forma\": \"pix\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-023",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Busca 2 + Alteração - Registrar pagamento (aluno fica em dia)",
+      "url": "http://127.0.0.1:5004/pagamentos",
+      "method": "POST",
+      "sortNum": 240000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"aluno_id\": 1,\n  \"valor\": 99.9,\n  \"referencia\": \"2026-11\",\n  \"forma\": \"pix\"\n}",
+        "form": []
+      }
+    },
+    {
+      "_id": "req-024",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Conferir aluno 1 em dia",
+      "url": "http://127.0.0.1:5001/alunos/1",
+      "method": "GET",
+      "sortNum": 250000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [],
+      "tests": []
+    },
+    {
+      "_id": "req-025",
+      "colId": "academia-col-0001",
+      "containerId": "fld-4",
+      "name": "Falha - Pagamento com serviço de alunos parado (503)",
+      "url": "http://127.0.0.1:5004/pagamentos",
+      "method": "POST",
+      "sortNum": 260000,
+      "created": "2026-11-20T12:00:00.000Z",
+      "modified": "2026-11-20T12:00:00.000Z",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"aluno_id\": 2,\n  \"valor\": 899.9,\n  \"referencia\": \"2026-11\",\n  \"forma\": \"cartao\"\n}",
+        "form": []
+      }
+    }
+  ],
+  "ref": "academia"
+}
