@@ -1,6 +1,6 @@
 # Academia – Arquitetura em Microsserviços (Flask)
 
-Projeto da disciplina de **Sistemas Distribuídos** (Centro Universitário SATC).
+Projeto da disciplina de **arquitetura de Software** (Unisatc).
 Back-end de uma academia, dividido em quatro microsserviços feitos com Python, Flask,
 Flask-SQLAlchemy e SQLite, que se comunicam por HTTP/JSON.
 
@@ -84,6 +84,7 @@ alguns dados de exemplo quando inicia com o banco vazio, o que ajuda no Render, 
 - Só guardamos o **id** do outro serviço (`plano_id`, `instrutor_id`, `aluno_id`), sem ForeignKey entre bancos.
 - Os endereços dos outros serviços vêm de **variáveis de ambiente**, com padrão local:
   `PLANOS_URL=http://127.0.0.1:5002`, `INSTRUTORES_URL=http://127.0.0.1:5003`, `ALUNOS_URL=http://127.0.0.1:5001`.
+  Cada serviço também aceita `PORT` (porta) e `DATABASE_URL` (padrão `sqlite:///<servico>.db`).
 - Toda chamada tem **tempo limite** (5 s). Se o outro serviço estiver fora do ar, é devolvido um **erro claro**
   (HTTP 503 com `{"erro": "..."}`), e o programa não quebra. Na Busca 1, o aluno é devolvido mesmo assim,
   com a mensagem de erro no lugar do plano.
@@ -105,6 +106,7 @@ recebida fica registrada, assim como cada chamada a outro serviço, cada nova te
 
 | Serviço | Método | Rota | Descrição |
 |---|---|---|---|
+| Todos | GET | `/` | Status do serviço (`{"servico": "...", "status": "ok"}`) |
 | Alunos | GET | `/alunos` | Lista alunos |
 | Alunos | GET | `/alunos/<id>` | Consulta aluno **+ plano + instrutor** |
 | Alunos | POST | `/alunos` | Cria aluno (valida plano) |
@@ -119,10 +121,30 @@ recebida fica registrada, assim como cada chamada a outro serviço, cada nova te
 | Pagamentos | GET/DELETE | `/pagamentos/<id>` | Consulta / remove |
 | Pagamentos | POST | `/pagamentos` | Registra pagamento (**Busca 2 + Alteração**) |
 
-Exemplo de corpo para `POST /pagamentos`:
-```json
+Exemplos de corpo:
+```jsonc
+// POST /planos
+{ "nome": "Semestral", "valor": 499.90, "duracao_meses": 6 }
+// POST /instrutores
+{ "nome": "Marcos Dias", "especialidade": "Pilates", "cref": "011223-G/SC" }
+// POST /alunos  (plano_id obrigatório; instrutor_id e ativo opcionais)
+{ "nome": "Diego Alves", "email": "diego@email.com", "plano_id": 1, "instrutor_id": 2, "ativo": true }
+// PATCH /alunos/<id>/situacao
+{ "situacao_pagamento": "em dia", "pagamento_id": 1 }
+// POST /pagamentos  (forma: pix | cartao | dinheiro | boleto — padrão pix)
 { "aluno_id": 1, "valor": 99.90, "referencia": "2026-11", "forma": "pix" }
 ```
+
+### Códigos de resposta
+Os erros sempre voltam no formato `{"erro": "mensagem"}`.
+
+| Código | Quando |
+|---|---|
+| 200 / 201 | Sucesso (201 nas criações) |
+| 400 | JSON ausente ou campo inválido / obrigatório faltando |
+| 404 | Registro não encontrado (inclusive aluno inexistente ao registrar pagamento) |
+| 422 | Plano inexistente ao cadastrar/alterar aluno; aluno **inativo** ao registrar pagamento |
+| 503 | Outro serviço fora do ar ou sem resposta em 5 s (com compensação, quando for o caso) |
 
 ### Dados iniciais
 - Planos: 1 Mensal (R$ 99,90), 2 Trimestral (R$ 269,90), 3 Anual (R$ 899,90)
