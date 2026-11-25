@@ -1,4 +1,4 @@
-"""Integração com o serviço de Instrutores (via HTTP, nunca pelo banco)."""
+"""fala com serviço instrutores via HTTP, nunca direto no banco."""
 import logging
 import os
 
@@ -15,7 +15,7 @@ class ServicoIndisponivel(Exception):
 
 
 def buscar_instrutor(instrutor_id):
-    """Retorna o instrutor (dict), None se não existir, ou lança ServicoIndisponivel."""
+    """busca instrutor por id. retorna dict, None se não achar, ou lança ServicoIndisponivel."""
     url = f"{INSTRUTORES_URL}/instrutores/{instrutor_id}"
     log.info("Consultando serviço de instrutores: GET %s", url)
     try:

@@ -23,7 +23,6 @@ def listar():
 
 @bp.get("/alunos/<int:aluno_id>")
 def buscar(aluno_id):
-    # Busca 1: devolve o aluno junto com os dados do plano (serviço de planos)
     return jsonify(regras.buscar_detalhado(aluno_id))
 
 
@@ -41,7 +40,6 @@ def atualizar(aluno_id):
 
 @bp.patch("/alunos/<int:aluno_id>/situacao")
 def alterar_situacao(aluno_id):
-    # Alteração: usado pelo serviço de pagamentos
     aluno = regras.alterar_situacao(aluno_id, request.get_json(silent=True))
     return jsonify(aluno.to_dict())
 

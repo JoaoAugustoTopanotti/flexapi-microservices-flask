@@ -28,7 +28,6 @@ def buscar(pagamento_id):
 
 @bp.post("/pagamentos")
 def registrar():
-    # Busca 2 (aluno ativo?) + Alteração (aluno "em dia") com compensação
     resultado = regras.registrar(request.get_json(silent=True))
     return jsonify(resultado), 201
 

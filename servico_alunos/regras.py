@@ -24,7 +24,7 @@ def validar_dados(dados):
 
 
 def validar_plano(plano_id):
-    """Ao cadastrar/alterar o aluno, confere se o plano existe no serviço de planos."""
+    """confere se plano existe no serviço de planos."""
     try:
         plano = planos_helper.buscar_plano(plano_id)
     except planos_helper.ServicoIndisponivel as e:
@@ -45,11 +45,7 @@ def buscar(aluno_id):
 
 
 def buscar_detalhado(aluno_id):
-    """BUSCA 1: ao consultar o aluno, mostrar o plano (e o instrutor).
-
-    Se o outro serviço estiver fora do ar, o aluno é devolvido mesmo assim,
-    com uma mensagem de erro clara no lugar do dado que faltou.
-    """
+    """busca aluno com plano e instrutor anexados. serviço fora do ar vira erro no campo, não quebra request."""
     aluno = buscar(aluno_id)
     resultado = aluno.to_dict()
 
@@ -103,7 +99,7 @@ def atualizar(aluno_id, dados):
 
 
 def alterar_situacao(aluno_id, dados):
-    """ALTERAÇÃO: chamado pelo serviço de pagamentos para marcar o aluno 'em dia'."""
+    """chamado pelo serviço pagamentos pra marcar aluno 'em dia'."""
     aluno = buscar(aluno_id)
     situacao = (dados or {}).get("situacao_pagamento")
     if situacao not in SITUACOES:

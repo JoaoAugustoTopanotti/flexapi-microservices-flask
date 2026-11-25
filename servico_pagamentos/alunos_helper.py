@@ -1,4 +1,4 @@
-"""Integração com o serviço de Alunos (via HTTP, nunca pelo banco)."""
+"""fala com serviço alunos via HTTP, nunca direto no banco."""
 import logging
 import os
 import time
@@ -6,9 +6,9 @@ import time
 import requests
 
 ALUNOS_URL = os.getenv("ALUNOS_URL", "http://127.0.0.1:5001")
-TEMPO_LIMITE = 5      # segundos
-TENTATIVAS = 3        # para a alteração de dados
-ESPERA_ENTRE = 1      # segundos entre as tentativas
+TEMPO_LIMITE = 5
+TENTATIVAS = 3
+ESPERA_ENTRE = 1
 
 log = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class ServicoIndisponivel(Exception):
 
 
 def buscar_aluno(aluno_id):
-    """BUSCA 2: retorna o aluno (dict), None se não existir, ou lança ServicoIndisponivel."""
+    """busca aluno por id. retorna dict, None se não achar, ou lança ServicoIndisponivel."""
     url = f"{ALUNOS_URL}/alunos/{aluno_id}"
     log.info("Consultando serviço de alunos: GET %s", url)
     try:
@@ -38,10 +38,7 @@ def buscar_aluno(aluno_id):
 
 
 def marcar_em_dia(aluno_id, pagamento_id):
-    """ALTERAÇÃO: pede ao serviço de alunos para marcar o aluno como 'em dia'.
-
-    Faz até TENTATIVAS chamadas antes de desistir (tentativa de novo).
-    """
+    """marca aluno 'em dia' no serviço alunos. tenta até TENTATIVAS vezes."""
     url = f"{ALUNOS_URL}/alunos/{aluno_id}/situacao"
     corpo = {"situacao_pagamento": "em dia", "pagamento_id": pagamento_id}
     ultimo_erro = "erro desconhecido"
@@ -54,7 +51,7 @@ def marcar_em_dia(aluno_id, pagamento_id):
                 return resposta.json()
             ultimo_erro = f"o serviço de alunos retornou erro {resposta.status_code}"
             if resposta.status_code < 500:
-                break  # erro do pedido (ex.: 404); não adianta tentar de novo
+                break  # erro de pedido (4xx), retry não resolve
         except requests.exceptions.Timeout:
             ultimo_erro = f"o serviço de alunos não respondeu em {TEMPO_LIMITE} segundos"
         except requests.exceptions.ConnectionError:

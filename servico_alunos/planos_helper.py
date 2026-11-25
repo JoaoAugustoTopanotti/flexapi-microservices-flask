@@ -1,4 +1,4 @@
-"""Integração com o serviço de Planos (via HTTP, nunca pelo banco)."""
+"""fala com serviço planos via HTTP, nunca direto no banco."""
 import logging
 import os
 
@@ -15,7 +15,7 @@ class ServicoIndisponivel(Exception):
 
 
 def buscar_plano(plano_id):
-    """Retorna o plano (dict), None se não existir, ou lança ServicoIndisponivel."""
+    """busca plano por id. retorna dict, None se não achar, ou lança ServicoIndisponivel."""
     url = f"{PLANOS_URL}/planos/{plano_id}"
     log.info("Consultando serviço de planos: GET %s", url)
     try:

@@ -52,7 +52,6 @@ def registrar(dados):
     valor, forma = validar_dados(dados)
     aluno_id = dados["aluno_id"]
 
-    # BUSCA 2: validar se o aluno existe e está ativo
     try:
         aluno = alunos_helper.buscar_aluno(aluno_id)
     except alunos_helper.ServicoIndisponivel as e:
@@ -62,17 +61,15 @@ def registrar(dados):
     if not aluno.get("ativo"):
         raise ErroRegra(f"O aluno {aluno_id} ({aluno['nome']}) está inativo; pagamento não registrado.", 422)
 
-    # 1º passo: salva o pagamento localmente
     pagamento = Pagamento(aluno_id=aluno_id, valor=valor, referencia=dados["referencia"], forma=forma)
     db.session.add(pagamento)
     db.session.commit()
     log.info("Pagamento %s salvo para o aluno %s", pagamento.id, aluno_id)
 
-    # 2º passo / ALTERAÇÃO: pede ao serviço de alunos para marcar como "em dia"
     try:
         aluno_atualizado = alunos_helper.marcar_em_dia(aluno_id, pagamento.id)
     except alunos_helper.ServicoIndisponivel as e:
-        # COMPENSAÇÃO: desfaz o pagamento salvo, já que a outra parte falhou
+        # desfaz pagamento salvo já que marcar 'em dia' falhou (compensação)
         log.error("Compensação: removendo pagamento %s. Motivo: %s", pagamento.id, e)
         db.session.delete(pagamento)
         db.session.commit()
@@ -90,5 +87,5 @@ def remover(pagamento_id):
 
 
 def popular_dados_iniciais():
-    # Pagamentos começam vazios: são criados na demonstração, via integração.
+    # pagamentos começam vazios, criados via integração na demo
     pass
