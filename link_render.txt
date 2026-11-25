@@ -1,0 +1,7 @@
+alunos -> https://flexapi-microservices-flask.onrender.com
+
+instrutores -> https://flexapi-microservices-flask-1.onrender.com
+
+pagamentos -> https://flexapi-microservices-flask-2.onrender.com
+	
+planos -> https://flexapi-microservices-flask-3.onrender.com
