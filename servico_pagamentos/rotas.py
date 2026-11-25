@@ -16,6 +16,11 @@ def status():
     return jsonify({"servico": "pagamentos", "status": "ok"})
 
 
+@bp.get("/api/health")
+def health():
+    return jsonify({"status": "no ar"})
+
+
 @bp.get("/pagamentos")
 def listar():
     return jsonify(regras.listar(request.args.get("aluno_id", type=int)))
